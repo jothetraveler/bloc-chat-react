@@ -24,8 +24,8 @@ componentDidMount(){
     return (
       <div>
         <ul>
-         {this.state.rooms.map(roomList => (
-          <li key={this.state.room.key}>{this.state.room}</li>
+         {this.state.rooms.map(rmList => (
+          <li key={this.room.key}>{this.room.roomName}</li>
           )
           )}
         </ul>
