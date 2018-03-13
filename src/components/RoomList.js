@@ -28,7 +28,7 @@ class RoomList extends Component{
   }
 
   createRoom() {
-      this.roomsRef.push({ name: newRoomName });
+      this.roomsRef.push({ room.name: newRoomName });
     }
 
   render(){
@@ -36,13 +36,13 @@ class RoomList extends Component{
       <div>
         <ul>
          {this.state.rooms.map( (room, key) => (
-           <li key={key}>{room.name}</li>
+           <li key={key}>{ room.name }</li>
           )
          )}
         </ul>
         <section>
           <input type="text" onChange={ (e) => this.formUpdate(e) }></input>
-          <button type="submit" onClick={this.createRoom()}>Submit</button>
+          <button type="submit" onClick={ this.createRoom() }>Submit</button>
         </section>
       </div>
     )
