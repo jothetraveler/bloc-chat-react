@@ -28,7 +28,7 @@ class RoomList extends Component{
   }
 
   createRoom() {
-      this.roomsRef.push({ room.name: newRoomName });
+      this.roomsRef.push({ name: this.state.newRoomName });
     }
 
   render(){
@@ -42,7 +42,7 @@ class RoomList extends Component{
         </ul>
         <section>
           <input type="text" onChange={ (e) => this.formUpdate(e) }></input>
-          <button type="submit" onClick={ this.createRoom() }>Submit</button>
+          <button type="submit" onClick={ () => this.createRoom() }>Submit</button>
         </section>
       </div>
     )
