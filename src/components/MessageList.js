@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+
 class MessageList extends Component{
     constructor(props){
       super(props);
@@ -9,7 +10,7 @@ class MessageList extends Component{
 
     }
 
-
+    this.roomsRef = this.props.firebase.database().ref('rooms');
 }
 
 componentDidMount() {
@@ -17,3 +18,12 @@ componentDidMount() {
        this.setState({ messages: e.target.value });
 
      });
+
+render(){
+  return(
+
+  )
+}
+
+
+export default MessageList;

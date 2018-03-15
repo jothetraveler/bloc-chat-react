@@ -16,20 +16,33 @@ var config = {
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state ={
+      activeRoom: ""
+    }
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Bloc Chat</h1>
         </header>
+        <div className="flex-container">
         <section className="App-rooms">
-          <RoomList firebase={firebase}/>
+          <RoomList
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+          />
         </section>
         <section>
-          <MessageList firebase={firebase}/>
+          <MessageList
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+          />
         </section>
-
+        </div>
       </div>
 
     );

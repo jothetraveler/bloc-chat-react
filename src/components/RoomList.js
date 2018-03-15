@@ -36,7 +36,7 @@ class RoomList extends Component{
       <div>
         <ul>
          {this.state.rooms.map( (room, key) => (
-           <li key={key}>{ room.name }</li>
+           <li key={key} onClick={this.props.activeRoom}>{ room.name }</li>
           )
          )}
         </ul>
