@@ -12,7 +12,8 @@ class RoomList extends Component{
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
 
-  };
+  }
+}
 
   componentDidMount() {
        this.roomsRef.on('child_added', snapshot => {
@@ -22,6 +23,7 @@ class RoomList extends Component{
 
        });
   }
+
   formUpdate(e) {
     this.setState({ newRoomName:e.target.value })
     console.log(this.state.newRoomName);
@@ -31,12 +33,17 @@ class RoomList extends Component{
       this.roomsRef.push({ name: this.state.newRoomName });
     }
 
+  setActiveRoom(){
+    this.setState({activeRoom: room.name})
+  }
+  //do I need the index in this function since the key is attached to the <li>??//
+
   render(){
     return (
       <div>
         <ul>
          {this.state.rooms.map( (room, key) => (
-           <li key={key} onClick={this.props.activeRoom}>{ room.name }</li>
+           <li key={key} onClick={() => this.setActiveRoom()}>{ room.name }</li>
           )
          )}
         </ul>
