@@ -13,7 +13,7 @@ class RoomList extends Component{
     this.roomsRef = this.props.firebase.database().ref('rooms');
 
   }
-}
+
 
   componentDidMount() {
        this.roomsRef.on('child_added', snapshot => {
@@ -34,7 +34,7 @@ class RoomList extends Component{
     }
 
   setActiveRoom(){
-    this.setState({activeRoom: room.name})
+    this.setState({ activeRoom: this.state.rooms.name})
   }
   //do I need the index in this function since the key is attached to the <li>??//
 

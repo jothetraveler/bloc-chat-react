@@ -13,19 +13,20 @@ class MessageList extends Component{
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
   }
-}
 
-componentDidMount() {
-     this.roomsRef.on('child_added', e => {
+
+  componentDidMount() {
+     this.roomsRef.on('child_added', (e) => {
        this.setState({ messages: e.target.value });
 
      });
+   }
 
-render(){
-  return(
-
-  )
+   render(){
+     return(
+       <p>{this.state.messages}</p>
+     )
+   }
 }
-
 
 export default MessageList;
