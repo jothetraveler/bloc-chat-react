@@ -7,24 +7,35 @@ class MessageList extends Component{
 
 
     this.state ={
-      messages:[]
+      messages:["tree", "branch"]
 
     }
 
-    this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.messagesRef = this.props.firebase.database().ref('messages');
   }
 
 
   componentDidMount() {
-     this.roomsRef.on('child_added', (e) => {
-       this.setState({ messages: e.target.value });
+     this.messagesRef.on('child_added', snapshot => {
+       const message = snapshot.val();
+       message.key = snapshot.key;
+       this.setState({ messages: this.state.messages.concat(message) });
 
      });
    }
 
    render(){
      return(
-       <p>{this.state.messages}</p>
+       <div>
+        <ol>
+          {this.state.messages.map((message) => {
+            if(message.roomId === this.activeRoom){
+              return <li key={message.key}>{this.state.messages}</li>
+            }
+          })
+        })
+        </ol>
+       </div>
      )
    }
 }

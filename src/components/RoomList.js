@@ -30,20 +30,19 @@ class RoomList extends Component{
   }
 
   createRoom() {
-      this.roomsRef.push({ name: this.state.newRoomName });
-    }
-
-  setActiveRoom(){
-    this.setState({ activeRoom: this.state.rooms.name})
+    this.roomsRef.push({ name: this.state.newRoomName });
   }
-  //do I need the index in this function since the key is attached to the <li>??//
+
+  setActiveRoom(room){
+    this.setState({ activeRoom:room})
+  }
 
   render(){
     return (
       <div>
         <ul>
          {this.state.rooms.map( (room, key) => (
-           <li key={key} onClick={() => this.setActiveRoom()}>{ room.name }</li>
+           <li key={room.key} onClick={this.setActiveRoom}>{ room.name }</li>
           )
          )}
         </ul>
