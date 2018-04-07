@@ -7,7 +7,11 @@ class MessageList extends Component{
 
 
     this.state ={
-      messages:["tree", "branch"]
+      messages:[],
+      username: "",
+      content: "",
+      sentAt: "",
+      roomId: ""
 
     }
 
@@ -23,25 +27,21 @@ class MessageList extends Component{
 
      });
    }
-
-  /*messageFormat(){
-     username: "<USERNAME HERE>",
-     content: "<CONTENT OF THE MESSAGE HERE>",
-     sentAt: "<TIME MESSAGE WAS SENT HERE>",
-     roomId: "<ROOM UID HERE>"
-   }*/
+ /*messageFormat(){
+ }*/
 
    render(){
      return(
        <div>
-        <ol>
+       <h3>{this.props.activeRoom}</h3>
+        <ul>
           {this.state.messages.map((message) => {
-            if(message.roomId === this.activeRoom){
-              return <li key={message.key}>{this.state.messages}</li>
+            if(message.roomId === this.props.activeRoom){
+              return <li key={message.key}>{message.content}</li>
             }
           })
         }
-        </ol>
+        </ul>
        </div>
      )
    }
