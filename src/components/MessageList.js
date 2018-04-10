@@ -12,10 +12,10 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: ""
-
     }
 
     this.messagesRef = this.props.firebase.database().ref('messages');
+
   }
 
 
@@ -23,24 +23,20 @@ class MessageList extends Component{
      this.messagesRef.on('child_added', snapshot => {
        const message = snapshot.val();
        message.key = snapshot.key;
-       this.setState({ messages: this.state.messages.concat(message) });
-
+      this.setState({ messages: this.state.messages.concat(message) });
      });
    }
- /*messageFormat(){
- }*/
+
 
    render(){
      return(
        <div>
-       <h3>{this.props.activeRoom}</h3>
+       <h3>{this.setActiveRoom}{console.log(this.setActiveRoom)}</h3>
         <ul>
-          {this.state.messages.map((message) => {
-            if(message.roomId === this.props.activeRoom){
-              return <li key={message.key}>{message.content}</li>
-            }
-          })
-        }
+          {this.state.messages.map((message) => (
+              <li key={message.key}>{message.content}</li>
+            ))
+          }
         </ul>
        </div>
      )
