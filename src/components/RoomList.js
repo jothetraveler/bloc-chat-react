@@ -33,6 +33,10 @@ class RoomList extends Component{
     this.roomsRef.push({ name: this.state.newRoomName });
   }
 
+  activeRoomsUpdate(room){
+    this.props.roomUpdate(room);
+    }
+  }
 
 
   render(){
@@ -40,7 +44,7 @@ class RoomList extends Component{
       <div>
         <ul>
          {this.state.rooms.map( (room, key) => (
-           <li key={room.key} onClick={this.props.setActiveRoom}>{ room.name }</li>
+           <li key={room.key} onClick={this.activeRoomsUpdate}>{ room.name }</li>
           )
          )}
         </ul>
