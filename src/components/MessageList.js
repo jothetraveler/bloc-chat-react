@@ -37,22 +37,27 @@ class MessageList extends Component{
 
    render(){
 
-
-
-    var currentMessages = (this.state.messages.map((message) => {
-
-      if (message.roomId === this.props.roomUpdate){
-        return <li key={ message.key }>{ message.content }</li>
-        }
-        return null;
-      })
-    );
+    // var currentMessages = (this.state.messages.map((message) => {
+    //
+    //   if (message.roomId === this.props.roomUpdate){
+    //     return <li key={ message.key }>{ message.content }</li>
+    //     }
+    //     return null;
+    //   })
+    // );
      return(
        <div>
        <h3>{this.roomUpdate}</h3>
         <ul>
-          {currentMessages}
+        //  {currentMessages}
+        (this.state.messages.map((message) => {
 
+          if (message.roomId === this.props.roomUpdate){
+            return <li key={ message.key }>{ message.content }</li>
+            }
+            return null;
+          })
+        );
         </ul>
 
 
