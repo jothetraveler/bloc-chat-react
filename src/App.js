@@ -57,7 +57,7 @@ class App extends Component {
           <MessageList
             firebase={firebase}
             roomUpdate={(room) => this.setActiveRoom(room)}
-            userName={() => this.setUsername(e)}
+            userName={() => this.setUsername()}
           />
         </section>
         </div>
