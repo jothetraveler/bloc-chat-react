@@ -35,29 +35,29 @@ class MessageList extends Component{
      })
    }
 
+   // let activeRoom = this.props.roomUpdate;
+   //
+   // currentDisplayedMessages(activeRoom){
+   //
+   //   if (message.roomId === activeRoom){
+   //     return <li key={ message.key }>{ message.content }</li>
+   //     }
+   //     return null;
+   //   }
+
+
    render(){
 
-    // var currentMessages = (this.state.messages.map((message) => {
-    //
-    //   if (message.roomId === this.props.roomUpdate){
-    //     return <li key={ message.key }>{ message.content }</li>
-    //     }
-    //     return null;
-    //   })
-    // );
      return(
        <div>
        <h3>{this.roomUpdate}</h3>
         <ul>
-        //  {currentMessages}
-        (this.state.messages.map((message) => {
 
-          if (message.roomId === this.props.roomUpdate){
-            return <li key={ message.key }>{ message.content }</li>
-            }
-            return null;
-          })
-        );
+        {this.state.messages.map((message) => (
+            <li key={ message.key }>{ message.content }</li>
+        ))
+        }
+
         </ul>
 
 
