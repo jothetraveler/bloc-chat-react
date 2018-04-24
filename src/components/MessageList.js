@@ -16,7 +16,7 @@ class MessageList extends Component{
     this.messagesRef = this.props.firebase.database().ref('Messages');
 
     this.handleChange = this.handleChange.bind(this);
-    this.updateDisplayedMessages = this.updateDisplayedMessages.bind(this);
+    //this.updateDisplayedMessages = this.updateDisplayedMessages.bind(this);
   }
 
   componentDidMount() {
@@ -38,7 +38,9 @@ class MessageList extends Component{
      })
    }
 
-
+   componentWillUpdate(activeRoom){
+     this.updateDisplayedMessages(activeRoom);
+   }
 
    updateDisplayedMessages(activeRoom) {
     if (!activeRoom) { return }
@@ -47,8 +49,10 @@ class MessageList extends Component{
       )}
     )};
 
+
+
    render(){
-     console.log("activeRoom is", this.props.activeRoom.name);
+
      return(
        <div>
        <h3>{this.props.activeRoom.name}</h3>
