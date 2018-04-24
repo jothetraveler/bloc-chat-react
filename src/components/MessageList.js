@@ -9,20 +9,23 @@ class MessageList extends Component{
       messages:[],
       content: "",
       sentAt: "",
-      roomId: ""
+      roomId: "",
+      displayedMessages: []
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
 
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.updateDisplayedMessages = this.updateDisplayedMessages.bind(this);
   }
 
   componentDidMount() {
      this.messagesRef.on('child_added', snapshot => {
        const message = snapshot.val();
        message.key = snapshot.key;
-       this.setState({ messages: this.state.messages.concat(message) });
-
+       this.setState({ messages: this.state.messages.concat(message)});
+       
+       ;
      });
   }
 
@@ -35,31 +38,27 @@ class MessageList extends Component{
      })
    }
 
-   // let activeRoom = this.props.roomUpdate;
-   //
-   // currentDisplayedMessages(activeRoom){
-   //
-   //   if (message.roomId === activeRoom){
-   //     return <li key={ message.key }>{ message.content }</li>
-   //     }
-   //     return null;
-   //   }
+   //let activeRoom = this.props.roomUpdate;
 
+   updateDisplayedMessages(activeRoom) {
+    if (!activeRoom) { return }
+    this.setState({ displayedMessages: this.state.messages.filter( message =>
+      message.roomId === activeRoom.key
+      )}
+    )};
 
    render(){
-
+     ;
      return(
        <div>
        <h3>{this.roomUpdate}</h3>
         <ul>
 
-        {this.state.messages.map((message) => (
+        {this.state.displayedMessages.map((message) => (
             <li key={ message.key }>{ message.content }</li>
         ))
         }
-
         </ul>
-
 
        </div>
      )
