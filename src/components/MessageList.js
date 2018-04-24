@@ -24,7 +24,7 @@ class MessageList extends Component{
        const message = snapshot.val();
        message.key = snapshot.key;
        this.setState({ messages: this.state.messages.concat(message)});
-       
+
        ;
      });
   }
@@ -34,11 +34,11 @@ class MessageList extends Component{
      username:this.props.userName,
      content:e.target.value,
      sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
-     roomId:this.roomUpdate
+     roomId:this.props.activeRoom.key
      })
    }
 
-   //let activeRoom = this.props.roomUpdate;
+
 
    updateDisplayedMessages(activeRoom) {
     if (!activeRoom) { return }
@@ -48,10 +48,10 @@ class MessageList extends Component{
     )};
 
    render(){
-     ;
+     console.log("activeRoom is", this.props.activeRoom.name);
      return(
        <div>
-       <h3>{this.roomUpdate}</h3>
+       <h3>{this.props.activeRoom.name}</h3>
         <ul>
 
         {this.state.displayedMessages.map((message) => (

@@ -27,16 +27,16 @@ class App extends Component {
   }
 
     setActiveRoom(room){
-      console.log(room);
+
       this.setState({ activeRoom:room});
-
+      console.log(this.state.activeRoom);
     }
 
-    setUsername(e){
-      this.setState({
-        username:e.content.value
-      })
-    }
+    // setUsername(e){
+    //   this.setState({
+    //     username:e.content.value
+    //   })
+    // }
 
 
   render() {
@@ -50,13 +50,13 @@ class App extends Component {
           <RoomList
             firebase={firebase}
             roomUpdate={(room) => this.setActiveRoom(room)}
-
           />
         </section>
         <section>
           <MessageList
             firebase={firebase}
-            roomUpdate={(room) => this.setActiveRoom(room)}
+            activeRoom={this.state.activeRoom}
+            //roomUpdate={(room) => this.setActiveRoom(room)}
             userName={() => this.setUsername()}
           />
         </section>

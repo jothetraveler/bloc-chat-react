@@ -35,7 +35,7 @@ class RoomList extends Component{
 
   activeRoomsUpdate(room){
     this.props.roomUpdate(room);
-    
+
     }
 
 
