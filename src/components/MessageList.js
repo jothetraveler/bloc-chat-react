@@ -38,12 +38,13 @@ class MessageList extends Component{
      })
    }
 
-   componentWillUpdate(activeRoom){
+   componentWillUpdate(room, activeRoom){
+     if (!activeRoom){return}
      this.updateDisplayedMessages(activeRoom);
    }
 
    updateDisplayedMessages(activeRoom) {
-    if (!activeRoom) { return }
+    // if (!activeRoom) { return }
     this.setState({ displayedMessages: this.state.messages.filter( message =>
       message.roomId === activeRoom.key
       )}
