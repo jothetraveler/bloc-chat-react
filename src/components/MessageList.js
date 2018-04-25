@@ -38,22 +38,26 @@ class MessageList extends Component{
      })
    }
 
-   componentWillUpdate(room, activeRoom){
-     if (!activeRoom){return}
-     this.updateDisplayedMessages(activeRoom);
-   }
+   // componentWillReceiveProps(activeRoom){
+   //   if (!activeRoom){return};
+   //      this.updateDisplayedMessages(activeRoom);
+   // }
 
-   updateDisplayedMessages(activeRoom) {
-    // if (!activeRoom) { return }
-    this.setState({ displayedMessages: this.state.messages.filter( message =>
-      message.roomId === activeRoom.key
-      )}
-    )};
+   componentWillReceiveProps(activeRoom) {
+     console.log(this.state.messages);
+     if (activeRoom) { this.setState({ displayedMessages: this.state.messages.filter( message =>
+      message.roomId === activeRoom.key)
+        })
+      }
+      {return};
+
+    //console.log(this.state.displayedMessages);
+  };
 
 
 
    render(){
-
+     console.log(this.state.displayedMessages)
      return(
        <div>
        <h3>{this.props.activeRoom.name}</h3>
