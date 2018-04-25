@@ -10,7 +10,7 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: "",
-      displayedMessages: []
+      displayedMessages:[]
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
@@ -44,20 +44,21 @@ class MessageList extends Component{
    // }
 
    componentWillReceiveProps(activeRoom) {
-     console.log(this.state.messages);
-     if (activeRoom) { this.setState({ displayedMessages: this.state.messages.filter( message =>
+     //if (!activeRoom){return}
+     this.setState({ displayedMessages: this.state.messages.filter( message =>
       message.roomId === activeRoom.key)
         })
-      }
-      {return};
+
+      ;
 
     //console.log(this.state.displayedMessages);
+    //I'm logging an empty array of displayedMessages
   };
 
 
 
    render(){
-     console.log(this.state.displayedMessages)
+    console.log(this.state.displayedMessages)
      return(
        <div>
        <h3>{this.props.activeRoom.name}</h3>
