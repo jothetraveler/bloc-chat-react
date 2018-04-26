@@ -10,13 +10,11 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: "",
-      displayedMessages:[]
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
 
     this.handleChange = this.handleChange.bind(this);
-    //this.updateDisplayedMessages = this.updateDisplayedMessages.bind(this);
   }
 
   componentDidMount() {
@@ -38,38 +36,21 @@ class MessageList extends Component{
      })
    }
 
-   // componentWillReceiveProps(activeRoom){
-   //   if (!activeRoom){return};
-   //      this.updateDisplayedMessages(activeRoom);
-   // }
-
-   componentWillReceiveProps(activeRoom) {
-     //if (!activeRoom){return}
-     this.setState({ displayedMessages: this.state.messages.filter( message =>
-      message.roomId === activeRoom.key)
-        })
-
-      ;
-
-    //console.log(this.state.displayedMessages);
-    //I'm logging an empty array of displayedMessages
-  };
-
-
-
    render(){
-    console.log(this.state.displayedMessages)
+
+    let displayedMessages = this.state.messages.filter( message =>
+     message.roomId === this.props.activeRoom.key);
+
+
      return(
        <div>
-       <h3>{this.props.activeRoom.name}</h3>
-        <ul>
-
-        {this.state.displayedMessages.map((message) => (
+        <h3>{this.props.activeRoom.name}</h3>
+          <ul>
+            {displayedMessages.map((message) => (
             <li key={ message.key }>{ message.content }</li>
-        ))
-        }
-        </ul>
-
+              ))
+            }
+          </ul>
        </div>
      )
    }
