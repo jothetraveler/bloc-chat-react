@@ -10,7 +10,7 @@ class User extends Component{
     }
 
     this.signIn = this.signIn.bind(this);
-    // this.signOut = this.signOut.bind(this)
+    this.signOut = this.signOut.bind(this)
   }
 
     signIn(){
@@ -18,15 +18,15 @@ class User extends Component{
       this.props.firebase.auth().signInWithPopup( provider );
     }
 
-    // signOut(){
-    //   this.props.firebase.auth().signOut();
-    // }
+    signOut(){
+      this.props.firebase.auth().signOut();
+    }
 
     render(){
       return(
         <div>
           <button onClick={this.signIn()}>Sign-In</button>
-          {/*<button onClick={this.signOut()}>Sign-Out</button>*/}
+          <button onClick={this.signOut()}>Sign-Out</button>
         </div>
       )
     }

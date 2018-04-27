@@ -22,7 +22,7 @@ class App extends Component {
 
     this.state ={
       activeRoom: "",
-      //username:""
+      username:""
     }
     this.setActiveRoom = this.setActiveRoom.bind(this);
   }
@@ -30,14 +30,14 @@ class App extends Component {
     setActiveRoom(room){
 
       this.setState({ activeRoom:room});
-      //console.log(this.state.activeRoom);
+
     }
 
-    // setUsername(e){
-    //   this.setState({
-    //     username:e.content.value
-    //   })
-    // }
+    setUsername(e){
+      this.setState({
+        username:e.content.value
+      })
+    }
 
 
   render() {
@@ -63,6 +63,7 @@ class App extends Component {
         <section>
           <User
           firebase={firebase}
+          setUsername={(e) => this.setUsername(e)}
           />
         </section>
         </div>
