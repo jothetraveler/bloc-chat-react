@@ -25,6 +25,7 @@ class App extends Component {
       username:""
     }
     this.setActiveRoom = this.setActiveRoom.bind(this);
+    this.setUsername = this.setUsername.bind(this);
   }
 
     setActiveRoom(room){
@@ -41,6 +42,8 @@ class App extends Component {
 
 
   render() {
+
+    let currentUser = this.state.username === null ? "Guest" : this.state.username ;
     return (
       <div className="App">
         <header className="App-header">
@@ -57,13 +60,14 @@ class App extends Component {
           <MessageList
             firebase={firebase}
             activeRoom={this.state.activeRoom}
-            //userName={() => this.setUsername()}
+            setUsername={(e) => this.setUsername(e)}
           />
         </section>
         <section>
           <User
           firebase={firebase}
           setUsername={(e) => this.setUsername(e)}
+
           />
         </section>
         </div>
