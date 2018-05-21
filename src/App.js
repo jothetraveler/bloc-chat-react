@@ -25,7 +25,7 @@ class App extends Component {
       username:""
     }
     this.setActiveRoom = this.setActiveRoom.bind(this);
-    this.setUsername = this.setUsername.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
     setActiveRoom(room){
@@ -34,16 +34,15 @@ class App extends Component {
 
     }
 
-    setUsername(e){
-      this.setState({
-        username:e.content.value
-      })
+    setUser(){
+      let currentUser = this.state.username === null ? "Guest" : this.state.username ;
+      this.setState({ username: currentUser });
     }
 
 
   render() {
 
-    let currentUser = this.state.username === null ? "Guest" : this.state.username ;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -60,13 +59,15 @@ class App extends Component {
           <MessageList
             firebase={firebase}
             activeRoom={this.state.activeRoom}
-            setUsername={(e) => this.setUsername(e)}
+            username={this.state.username}
           />
         </section>
         <section>
           <User
           firebase={firebase}
-          setUsername={(e) => this.setUsername(e)}
+          setUser={() => this.setUser()}
+          username={this.state.username}
+
 
           />
         </section>
@@ -74,7 +75,9 @@ class App extends Component {
       </div>
 
     );
+
   }
+
 }
 
 export default App;

@@ -6,7 +6,6 @@ class User extends Component{
 
     this.state ={
       //userName:"",
-
     }
 
     this.signIn = this.signIn.bind(this);
@@ -24,7 +23,7 @@ class User extends Component{
 
     componentDidMount(){
       this.props.firebase.auth().onAuthStateChanged( user => {
-        this.props.setUser(user);
+        this.props.setUsername(user);
       });
     }
 
@@ -32,7 +31,7 @@ class User extends Component{
       return(
         <div>
           <section>
-            <h4>Welcome, {this.props.setUsername() === null ? "Guest" : this.props.setUsername()}</h4>
+          <h4>Welcome, {this.props.setUser() === null ? "Guest" : this.props.setUser()}</h4>
           </section>
 
           <div>
