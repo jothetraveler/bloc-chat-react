@@ -23,7 +23,7 @@ class User extends Component{
 
     componentDidMount(){
       this.props.firebase.auth().onAuthStateChanged( user => {
-        this.props.setUsername(user);
+        this.props.setUser(user);
       });
     }
 
@@ -31,7 +31,7 @@ class User extends Component{
       return(
         <div>
           <section>
-          <h4>Welcome, {this.props.setUser() === null ? "Guest" : this.props.setUser()}</h4>
+          <h4>Welcome, {this.props.setUser === null ? "Guest" : this.props.setUser}</h4>
           </section>
 
           <div>
