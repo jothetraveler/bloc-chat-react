@@ -10,10 +10,10 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: "",
+      
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -22,8 +22,6 @@ class MessageList extends Component{
        const message = snapshot.val();
        message.key = snapshot.key;
        this.setState({ messages: this.state.messages.concat(message)});
-
-       ;
      });
   }
 
