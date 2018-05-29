@@ -65,8 +65,8 @@ class App extends Component {
         <section>
           <User
           firebase={firebase}
-          setUser={() => this.setUser()}
-          currentUser={this.state.user === null ? 'Guest' : this.state.user}
+          setUser={(user) => this.setUser(user)}
+          currentUser={this.state.user === null ? 'Guest' : this.state.user.displayName}
 
 
           />
