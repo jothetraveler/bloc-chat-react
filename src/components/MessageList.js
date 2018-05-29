@@ -36,6 +36,16 @@ class MessageList extends Component{
      })
    }
 
+   createNewMessage() {
+     this.messagesRef.push({
+       username:this.props.user,
+       content:e.target.value,
+       sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+       roomId:this.props.activeRoom.key
+       })
+     });
+   }
+
    render(){
 
     let displayedMessages = this.state.messages.filter( message =>
