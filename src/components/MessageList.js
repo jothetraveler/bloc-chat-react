@@ -29,11 +29,11 @@ class MessageList extends Component{
 
    handleChange(e){
      this.setState({
-     username:this.props.userName,
+     username:this.props.user,
      content:e.target.value,
      sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
      roomId:this.props.activeRoom.key
-     })
+    });
    }
 
    createNewMessage() {
@@ -42,7 +42,7 @@ class MessageList extends Component{
        content:e.target.value,
        sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
        roomId:this.props.activeRoom.key
-       })
+      });
      });
    }
 
