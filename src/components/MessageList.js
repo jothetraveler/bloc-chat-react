@@ -10,11 +10,12 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: "",
+      newMessageText:""
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
-
     this.handleChange = this.handleChange.bind(this);
+    this.createNewMessage = this.createNewMessage.bind(this);
   }
 
   componentDidMount() {
@@ -36,14 +37,13 @@ class MessageList extends Component{
     });
    }
 
-   createNewMessage() {
+   createNewMessage(e) {
      this.messagesRef.push({
        username:this.props.user,
        content:e.target.value,
        sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
        roomId:this.props.activeRoom.key
       });
-     });
    }
 
    render(){
@@ -61,6 +61,12 @@ class MessageList extends Component{
               ))
             }
           </ul>
+        <section>
+          <form onSubmit={ (e) => { this.createNewMessage(e) }}>
+  					<input type="text" placeholder="Blah Blah Blah"></input>
+  					<button type="submit">Submit</button>
+  				</form>
+        </section>
        </div>
      )
    }
