@@ -9,8 +9,7 @@ class MessageList extends Component{
       messages:[],
       content: "",
       sentAt: "",
-      roomId: "",
-      newMessageText:""
+      roomId: ""
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
@@ -30,20 +29,22 @@ class MessageList extends Component{
 
    handleChange(e){
      this.setState({
-     username:this.props.user,
-     content:e.target.value,
-     sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
-     roomId:this.props.activeRoom.key
-    });
+       username:this.props.user,
+       content:e.target.value,
+       sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+       roomId:this.props.activeRoom.key
+     });
    }
 
    createNewMessage(e) {
+     e.preventDefault();
      this.messagesRef.push({
        username:this.props.user,
        content:e.target.value,
        sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
        roomId:this.props.activeRoom.key
       });
+      console.log(this.state.messages);
    }
 
    render(){
@@ -57,12 +58,16 @@ class MessageList extends Component{
         <h3>{this.props.activeRoom.name}</h3>
           <ul>
             {displayedMessages.map((message) => (
-            <li key={ message.key }>{ message.content }</li>
+            <li key={ message.key }>
+              Username: {message.username}<br></br>
+              Time: {message.sentAt}<br></br>
+               {message.content}
+            </li>
               ))
             }
           </ul>
         <section>
-          <form onSubmit={ (e) => { this.createNewMessage(e) }}>
+          <form onSubmit={(e) => { this.createNewMessage(e) }}>
   					<input type="text" placeholder="Blah Blah Blah"></input>
   					<button type="submit">Submit</button>
   				</form>
