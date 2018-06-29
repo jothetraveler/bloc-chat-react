@@ -10,11 +10,16 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: "",
+<<<<<<< HEAD
 
+=======
+      newMessageContent: ""
+>>>>>>> checkpoint-6-sendmessages
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
     this.handleChange = this.handleChange.bind(this);
+    this.createNewMessage = this.createNewMessage.bind(this);
   }
 
   componentDidMount() {
@@ -27,12 +32,30 @@ class MessageList extends Component{
 
    handleChange(e){
      this.setState({
-     username:this.props.userName,
-     content:e.target.value,
-     sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
-     roomId:this.props.activeRoom.key
+       username:this.props.user,
+       content:e.target.value,
+       sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+       roomId:this.props.activeRoom.key
+     });
+   }
+
+   handleMessageChange(e){
+     this.setState({
+       newMessageContent:e.target.value
      })
    }
+
+   createNewMessage(e) {
+     e.preventDefault();
+     this.messagesRef.push({
+       username:this.props.user.displayName,
+       content:this.state.newMessageContent,
+       sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+       roomId:this.props.activeRoom.key
+      });
+      this.setState({
+        newMessageContent:""
+      })   }
 
    render(){
 
@@ -45,10 +68,20 @@ class MessageList extends Component{
         <h3>{this.props.activeRoom.name}</h3>
           <ul>
             {displayedMessages.map((message) => (
-            <li key={ message.key }>{ message.content }</li>
+            <li key={ message.key }>
+              Username: {message.username}<br></br>
+              Time: {message.sentAt}<br></br>
+               {message.content}
+            </li>
               ))
             }
           </ul>
+        <section>
+          <form onSubmit={(e) => { this.createNewMessage(e) }}>
+  					<input type="text" placeholder="Blah Blah Blah" value={this.state.newMessageContent} onChange={ (e) => this.handleMessageChange(e) }></input>
+  					<button type="submit">Submit</button>
+  				</form>
+        </section>
        </div>
      )
    }
