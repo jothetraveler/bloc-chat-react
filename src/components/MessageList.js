@@ -10,11 +10,7 @@ class MessageList extends Component{
       content: "",
       sentAt: "",
       roomId: "",
-<<<<<<< HEAD
-
-=======
       newMessageContent: ""
->>>>>>> checkpoint-6-sendmessages
     }
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
