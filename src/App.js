@@ -59,11 +59,8 @@ class App extends Component {
           <MessageList
             firebase={firebase}
             activeRoom={this.state.activeRoom}
-<<<<<<< HEAD
             userName={this.state.user}
-=======
             user={this.state.user}
->>>>>>> checkpoint-6-sendmessages
           />
         </section>
         <section>
