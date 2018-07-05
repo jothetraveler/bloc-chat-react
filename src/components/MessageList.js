@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import moment from "moment";
 
 
 class MessageList extends Component{
@@ -30,7 +31,7 @@ class MessageList extends Component{
      this.setState({
        username:this.props.user,
        content:e.target.value,
-       sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+       sentAt:moment().format('h:mm:ss a'),
        roomId:this.props.activeRoom.key
      });
    }
@@ -46,7 +47,7 @@ class MessageList extends Component{
      this.messagesRef.push({
        username:this.props.user.displayName,
        content:this.state.newMessageContent,
-       sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,
+       sentAt:moment().format('h:mm:ss a'),
        roomId:this.props.activeRoom.key
       });
       this.setState({
@@ -68,7 +69,7 @@ class MessageList extends Component{
             {displayedMessages.map((message) => (
             <li key={ message.key }>
               Username: {message.username}<br></br>
-              Time: { moment().format('h:mm:ss a') } <br></br>
+              Time: {message.sentAt } <br></br>
                {message.content}
             </li>
               ))
