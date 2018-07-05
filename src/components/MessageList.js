@@ -16,7 +16,6 @@ class MessageList extends Component{
     this.messagesRef = this.props.firebase.database().ref('Messages');
     this.handleChange = this.handleChange.bind(this);
     this.createNewMessage = this.createNewMessage.bind(this);
-    this.convertTimestamp = this.convertTimestamp.bind(this)
   }
 
   componentDidMount() {
@@ -54,36 +53,7 @@ class MessageList extends Component{
         newMessageContent:""
       })   }
 
-  convertTimestamp(this.state.sentAt) {
-    var d = new Date(this.state.sentAt * 1000),	// Convert the passed timestamp to milliseconds
-      	//dd = ('0' + d.getDate()).slice(-2),			// Add leading 0.
-    		hh = d.getHours(),
-    		h = hh,
-    		min = ('0' + d.getMinutes()).slice(-2),		// Add leading 0.
-    		ampm = 'AM',
-    		time;
 
-    	if (hh > 12) {
-    		h = hh - 12;
-    		ampm = 'PM';
-    	} else if (hh === 12) {
-    		h = 12;
-    		ampm = 'PM';
-    	} else if (hh == 0) {
-    		h = 12;
-    	}
-
-    	// ie: 2013-02-18, 8:35 AM
-    	time = h + ':' + min + ' ' + ampm;
-
-    	return time;
-
-      // this.setState({
-      //   sentAt:time
-      // })
-
-      console.log(time)
-  }
 
    render(){
 
@@ -98,7 +68,7 @@ class MessageList extends Component{
             {displayedMessages.map((message) => (
             <li key={ message.key }>
               Username: {message.username}<br></br>
-              Time: {(e) => {this.convertTimestamp(this.state.sentAt)} }<br></br>
+              Time: { moment().format('h:mm:ss a') } <br></br>
                {message.content}
             </li>
               ))
